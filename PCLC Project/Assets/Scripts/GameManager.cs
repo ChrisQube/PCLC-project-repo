@@ -28,12 +28,35 @@ public class GameManager : MonoBehaviour
         
     }
 
+    private float SmoothCardYPosition(float originalY)
+    {
+        if (originalY > 0)
+        {
+            //y=-a^{0.652+x}+0.35
+            return -Mathf.Pow(0.2f, (0.652f + originalY)) + 0.35f;
+        }
+        else
+        {
+            //y=a^{0.456+x}-0.35
+            return Mathf.Pow(0.2f, -(-0.456f + originalY)) - 0.35f;
+        }
+    }
+
     void Update()
     {
        //Movement
        if (Input.GetMouseButton(0) && mainCardController.isMouseOver)
        {
             Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            //if (pos.y > 0.35)
+            //{
+            //    pos.y = 0.35f;
+            //}
+            //else if(pos.y < -0.35)
+            //{
+            //    pos.y = -0.35f;
+            //}
+            pos.y = SmoothCardYPosition(pos.y);
             cardGameObject.transform.position = pos;
        }
        else
@@ -46,49 +69,60 @@ public class GameManager : MonoBehaviour
         
         ////Checking sides
         //Right Side +/- Down
-        if (cardGameObject.transform.position.x > 0)//f_xDistanceToMargin) // && cardGameObject.transform.position.y < -f_yDistanceToTrigger)
+        if (cardGameObject.transform.position.x > 0)//&& cardGameObject.transform.position.y < 0)
         {
-            byte alphaValue = (byte)(Mathf.Min(cardGameObject.transform.position.x, 1) * 255);
-            downText.faceColor = new Color32(0, 0, 0, alphaValue);
+            //ignore
+            //int XAxisAlphaValue = (int)(Mathf.Min(cardGameObject.transform.position.x, 1) * 255);
+            //int YAxisAlphaValue = (int)(Mathf.Min(cardGameObject.transform.position.y / 0.35f, 1) * 255);
+            //byte finalAlphaValue = (byte)(Mathf.Max(XAxisAlphaValue, YAxisAlphaValue));
+            //downText.faceColor = new Color32(0, 0, 0, finalAlphaValue);
+
+            byte XAxisAlphaValue = (byte)(Mathf.Min(cardGameObject.transform.position.x, 1) * 255);
+            downText.faceColor = new Color32(0, 0, 0, XAxisAlphaValue);
+
+            if (!Input.GetMouseButton(0) && XAxisAlphaValue > 220)
+            {
+                //mainCardController.InduceRight();
+                Debug.Log("Right");
+            }
+
             //Debug.Log("a = " + Mathf.Min(cardGameObject.transform.position.x, 1));
-            Debug.Log("alpha = " + alphaValue);
+            //Debug.Log("alpha = " + XAxisAlphaValue);
             //display.text = "x = " + cardGameObject.transform.position.x.ToString() + "; y = " + cardGameObject.transform.position.y.ToString();
             //cardSpriteRenderer.color = Color.green;
 
-            mainText.text = alphaValue.ToString();
+            mainText.text = XAxisAlphaValue.ToString();
         }
         //Left Side +/- Up
-        else if (cardGameObject.transform.position.x < 0)//-f_xDistanceToMargin) // && cardGameObject.transform.position.y > f_yDistanceToTrigger) 
+        else if (cardGameObject.transform.position.x < 0)// && cardGameObject.transform.position.y > 0) 
         {
+            //ignore
+            //int XAxisAlphaValue = (int)(Mathf.Min(-cardGameObject.transform.position.x, 1) * 255); //finds the Alpha value based of position X
+            //int YAxisAlphaValue = (int)(Mathf.Min(-cardGameObject.transform.position.y / 0.35f, 1) * 255); //finds the alpha value based of position Y
+            //byte finalAlphaValue = (byte)(Mathf.Max(XAxisAlphaValue, YAxisAlphaValue)); //compares between X and Y for maximum opacity
+            //upText.faceColor = new Color32(0, 0, 0, finalAlphaValue);
 
-            byte alphaValue = (byte)(Mathf.Min(-cardGameObject.transform.position.x, 1) * 255);
-            upText.faceColor = new Color32(0, 0, 0, alphaValue);
+            byte XAxisAlphaValue = (byte)(Mathf.Min(-cardGameObject.transform.position.x, 1) * 255);
+            upText.faceColor = new Color32(0, 0, 0, XAxisAlphaValue);
+
+            if (!Input.GetMouseButton(0) && XAxisAlphaValue > 220)
+            {
+                //mainCardController.InduceLeft();
+                Debug.Log("Left");
+            }
+
             //downText.alpha = Mathf.Min(-cardGameObject.transform.position.x, 1);
             //Debug.Log("a = " + Mathf.Min(-cardGameObject.transform.position.x, 1));
             //display.text = "x = " + cardGameObject.transform.position.x.ToString() + "; y = " + cardGameObject.transform.position.y.ToString();
             //cardSpriteRenderer.color = Color.red;
 
-            mainText.text = alphaValue.ToString();
+            mainText.text = XAxisAlphaValue.ToString();
         }
         else
         {
             upText.faceColor = new Color32(0, 0, 0, 50);
             downText.faceColor = new Color32(0, 0, 0, 50);
             //cardSpriteRenderer.color = Color.white;
-        }
-    }
-
-    private void OnMouseUp()
-    {
-        if (!Input.GetMouseButton(0) && cardGameObject.transform.position.x > f_xDistanceToTrigger)
-        {
-            //mainCardController.InduceRight();
-            Debug.Log("Right");
-        }
-        else if(!Input.GetMouseButton(0) && cardGameObject.transform.position.x < -f_xDistanceToTrigger)
-        {
-            //mainCardController.InduceLeft();
-            Debug.Log("Left");
         }
     }
 

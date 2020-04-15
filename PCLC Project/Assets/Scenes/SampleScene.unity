@@ -852,7 +852,7 @@ MonoBehaviour:
   upText: {fileID: 2018441806}
   downText: {fileID: 1854372600}
   f_xDistanceToMargin: 0.8
-  f_yDistanceToMargin: 0.5
+  f_yDistanceToMargin: 0.2
   f_xDistanceToTrigger: 0.8
 --- !u!1 &1246217621
 GameObject:
