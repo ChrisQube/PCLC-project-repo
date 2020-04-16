@@ -810,6 +810,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1132039992}
   - component: {fileID: 1132039993}
+  - component: {fileID: 1132039994}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -845,15 +846,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardGameObject: {fileID: 1246217621}
   cardSpriteRenderer: {fileID: 1246217622}
+  cardResourceManager: {fileID: 1132039994}
   mainCardController: {fileID: 1246217625}
   fMovingSpeed: 1
   display: {fileID: 71873431}
+  characterName: {fileID: 0}
   mainText: {fileID: 572808728}
   upText: {fileID: 2018441806}
   downText: {fileID: 1854372600}
   f_xDistanceToMargin: 0.8
   f_yDistanceToMargin: 0.2
   f_xDistanceToTrigger: 0.8
+  currentCard: {fileID: 0}
+  testCard: {fileID: 11400000, guid: 0912d2f10ac4c49478bc9dd875526b40, type: 2}
+--- !u!114 &1132039994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1132039991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d416b9f0fe2c9264f9d80d5598abf6b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: -4351204034768352152, guid: 5335f6f099210fa44bbb0b0ff95f6e00, type: 3}
+  - {fileID: 8964524194765570137, guid: 5335f6f099210fa44bbb0b0ff95f6e00, type: 3}
+  - {fileID: -2332818847965764189, guid: 5335f6f099210fa44bbb0b0ff95f6e00, type: 3}
+  - {fileID: -7141057014314853691, guid: 5335f6f099210fa44bbb0b0ff95f6e00, type: 3}
 --- !u!1 &1246217621
 GameObject:
   m_ObjectHideFlags: 0
@@ -976,6 +998,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73fd2bc550058794199b32765874276a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  card: {fileID: 0}
   thisCardBoxCollider2D: {fileID: 0}
   isMouseOver: 0
 --- !u!1 &1854372598

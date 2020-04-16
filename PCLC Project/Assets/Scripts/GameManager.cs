@@ -5,27 +5,39 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("GameObjects")]
     public GameObject cardGameObject;
     public SpriteRenderer cardSpriteRenderer;
 
+    public ResourceManager cardResourceManager;
+
     public CardController mainCardController;
 
+    [Header("Tweaking variables")]
     public float fMovingSpeed;
     Vector3 pos;
 
+    [Header("UI")]
     public TextMeshProUGUI display; //for debugging
+    public TextMeshPro characterName; //CAN BE DELETED TOO
     public TextMeshPro mainText;
     public TextMeshPro upText;
     public TextMeshPro downText;
 
+    [Header("Card Margins")]
     public float f_xDistanceToMargin;
     public float f_yDistanceToMargin;
-
     public float f_xDistanceToTrigger;
+    
+    [Header("Card variables")]
+    private string LeftUpQuote;
+    private string RightDownQuote;
+    public Card currentCard;
+    public Card testCard;
 
     void Start()
     {
-        
+        LoadCard(testCard);
     }
 
     private float SmoothCardYPosition(float originalY)
@@ -126,4 +138,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void LoadCard(Card card)
+    {
+        currentCard = card;
+        cardSpriteRenderer.sprite = cardResourceManager.sprites[(int)card.sprite];
+        LeftUpQuote = card.LeftUpQuote;
+        RightDownQuote = card.RightDownQuote;
+        
+
+    }
+
 }
+
