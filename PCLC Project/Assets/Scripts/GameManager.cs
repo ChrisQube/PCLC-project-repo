@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     [Header("Card variables")]
     private string LeftUpQuote;
     private string RightDownQuote;
+    private string MainTextQuote;
     public Card currentCard;
     public Card testCard;
 
@@ -77,7 +78,11 @@ public class GameManager : MonoBehaviour
         }
         display.text = "x = " + cardGameObject.transform.position.x.ToString() + "; y = " + cardGameObject.transform.position.y.ToString();
 
-        
+
+        //CARD details update every frame (can make more efficient by only updating when cards load)
+        //upText.text = LeftUpQuote;
+        //downText.text = RightDownQuote;
+        //mainText.text = MainTextQuote;
         
         ////Checking sides
         //Right Side +/- Down
@@ -144,7 +149,11 @@ public class GameManager : MonoBehaviour
         cardSpriteRenderer.sprite = cardResourceManager.sprites[(int)card.sprite];
         LeftUpQuote = card.LeftUpQuote;
         RightDownQuote = card.RightDownQuote;
-        
+        MainTextQuote = card.MainText;
+        //CARD details update when cards load
+        upText.text = LeftUpQuote;
+        downText.text = RightDownQuote;
+        mainText.text = MainTextQuote;
 
     }
 
