@@ -36,6 +36,9 @@ public class GameManager : MonoBehaviour
     public Card currentCard;
     public Card testCard;
 
+    //Card swipe states
+    public enum ChoiceDirection { left, right };
+
     void Start()
     {
         LoadCard(testCard);
@@ -97,10 +100,10 @@ public class GameManager : MonoBehaviour
             byte XAxisAlphaValue = (byte)(Mathf.Min(cardGameObject.transform.position.x, 1) * 255);
             downText.faceColor = new Color32(0, 0, 0, XAxisAlphaValue);
 
-            if (!Input.GetMouseButton(0) && XAxisAlphaValue > 220)
+            if (Input.GetMouseButtonUp(0))//if (!Input.GetMouseButton(0) && XAxisAlphaValue > 220)
             {
-                //mainCardController.InduceRight();
-                Debug.Log("Right");
+                NextCard(ChoiceDirection.right);
+                //Debug.Log("Right");
             }
 
             //Debug.Log("a = " + Mathf.Min(cardGameObject.transform.position.x, 1));
@@ -108,7 +111,7 @@ public class GameManager : MonoBehaviour
             //display.text = "x = " + cardGameObject.transform.position.x.ToString() + "; y = " + cardGameObject.transform.position.y.ToString();
             //cardSpriteRenderer.color = Color.green;
 
-            mainText.text = XAxisAlphaValue.ToString();
+            //mainText.text = XAxisAlphaValue.ToString();
         }
         //Left Side +/- Up
         else if (cardGameObject.transform.position.x < 0)// && cardGameObject.transform.position.y > 0) 
@@ -122,10 +125,10 @@ public class GameManager : MonoBehaviour
             byte XAxisAlphaValue = (byte)(Mathf.Min(-cardGameObject.transform.position.x, 1) * 255);
             upText.faceColor = new Color32(0, 0, 0, XAxisAlphaValue);
 
-            if (!Input.GetMouseButton(0) && XAxisAlphaValue > 220)
+            if (Input.GetMouseButtonUp(0))//if (!Input.GetMouseButton(0) && XAxisAlphaValue > 220)
             {
-                //mainCardController.InduceLeft();
-                Debug.Log("Left");
+                NextCard(ChoiceDirection.left);
+                //Debug.Log("Left");
             }
 
             //downText.alpha = Mathf.Min(-cardGameObject.transform.position.x, 1);
@@ -133,7 +136,7 @@ public class GameManager : MonoBehaviour
             //display.text = "x = " + cardGameObject.transform.position.x.ToString() + "; y = " + cardGameObject.transform.position.y.ToString();
             //cardSpriteRenderer.color = Color.red;
 
-            mainText.text = XAxisAlphaValue.ToString();
+            //mainText.text = XAxisAlphaValue.ToString();
         }
         else
         {
@@ -155,6 +158,54 @@ public class GameManager : MonoBehaviour
         downText.text = RightDownQuote;
         mainText.text = MainTextQuote;
 
+        Debug.Log("Card: " + currentCard.cardName + "has finished loading.");
+
+    }
+
+    public void NewCard()
+    {
+        //Needs randomizer
+        //Needs an integer of count, i.e. if the game only has 14 cards, then needs to know which "act/section" the game is in to choose from a different set of cards.
+        //Needs randomizer when the "act/section" is known.
+            //When specific cardcounts come out; then some cards are "must sees/major life events/decisions"
+    }
+
+    public void NextCard(ChoiceDirection choice)
+    {
+        Debug.Log("CardID " + currentCard.cardName + " swiped " + choice.ToString());
+
+        switch (currentCard.cardID)
+        {
+            case 0: //Tutorial 1
+                if (choice == ChoiceDirection.left)
+                { LoadCard(cardResourceManager.cards[1]); }
+                else
+                {
+                    //do nothing
+                }
+                break;
+            case 1: //Tutorial 2
+                if (choice == ChoiceDirection.left)
+                {
+                    //do nothing
+                }
+                else
+                {
+                    LoadCard(cardResourceManager.cards[2]);
+                }
+                break;
+            case 2: //Tutorial 2
+                if (choice == ChoiceDirection.left)
+                {
+                    //START GAME
+                }
+                else
+                {
+                    //restart tutorial
+                    LoadCard(cardResourceManager.cards[0]);
+                }
+                break;
+        }
     }
 
 }

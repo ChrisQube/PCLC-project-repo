@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 235570ee1a79bfb44b1a1546085a0241, type: 3}
   m_Name: testCard1
   m_EditorClassIdentifier: 
-  cardID: 0
+  cardID: -1
   cardName: test1
   sprite: 1
   MainText: <- SWIPE ->

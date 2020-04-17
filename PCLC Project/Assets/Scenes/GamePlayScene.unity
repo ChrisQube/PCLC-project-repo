@@ -858,7 +858,7 @@ MonoBehaviour:
   f_yDistanceToMargin: 0.2
   f_xDistanceToTrigger: 0.8
   currentCard: {fileID: 0}
-  testCard: {fileID: 11400000, guid: 0912d2f10ac4c49478bc9dd875526b40, type: 2}
+  testCard: {fileID: 11400000, guid: b0f2da2c1ca9d3843bec6933ac22a987, type: 2}
 --- !u!114 &1132039994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -876,6 +876,10 @@ MonoBehaviour:
   - {fileID: 8964524194765570137, guid: 5335f6f099210fa44bbb0b0ff95f6e00, type: 3}
   - {fileID: -2332818847965764189, guid: 5335f6f099210fa44bbb0b0ff95f6e00, type: 3}
   - {fileID: -7141057014314853691, guid: 5335f6f099210fa44bbb0b0ff95f6e00, type: 3}
+  cards:
+  - {fileID: 11400000, guid: b0f2da2c1ca9d3843bec6933ac22a987, type: 2}
+  - {fileID: 11400000, guid: c40ce61fd1c18c44c9512c55b183e9cc, type: 2}
+  - {fileID: 11400000, guid: 71c44cce2ffb1c44eb4af3994ad11885, type: 2}
 --- !u!1 &1246217621
 GameObject:
   m_ObjectHideFlags: 0

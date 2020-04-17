@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 235570ee1a79bfb44b1a1546085a0241, type: 3}
-  m_Name: testCard2
+  m_Name: tutorialCard2
   m_EditorClassIdentifier: 
-  cardID: -2
-  cardName: test2
-  sprite: 2
-  MainText: Good work! Let's do it again.
-  LeftUpQuote: This is left (up)
-  RightDownQuote: This is right (down!)
+  cardID: 2
+  cardName: 
+  sprite: 0
+  MainText: Great work! This game is about your choices and values. Choose wisely!
+  LeftUpQuote: Let's begin!
+  RightDownQuote: Wait... start the tutorial again!
