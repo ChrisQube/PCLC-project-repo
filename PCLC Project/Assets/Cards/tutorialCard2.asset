@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: tutorialCard2
   m_EditorClassIdentifier: 
   cardID: 2
-  cardName: 
+  cardName: Tutorial 2
   sprite: 0
   MainText: Great work! This game is about your choices and values. Choose wisely!
   LeftUpQuote: Let's begin!

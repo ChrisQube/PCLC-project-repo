@@ -509,8 +509,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 2.7
-  m_fontSizeBase: 2.7
+  m_fontSize: 2.58
+  m_fontSizeBase: 2.58
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -938,7 +938,7 @@ SpriteRenderer:
   m_SortingOrder: 1
   m_Sprite: {fileID: -4351204034768352152, guid: 5335f6f099210fa44bbb0b0ff95f6e00,
     type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.3584906, g: 0.3584906, b: 0.3584906, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

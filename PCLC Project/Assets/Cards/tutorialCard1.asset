@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: tutorialCard1
   m_EditorClassIdentifier: 
   cardID: 1
-  cardName: Tutorial 2
+  cardName: Tutorial 1
   sprite: 2
   MainText: Nice! Now try swiping right!
   LeftUpQuote: This is still left!
