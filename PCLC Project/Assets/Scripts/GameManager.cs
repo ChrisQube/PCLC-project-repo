@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     private string MainTextQuote;
     public Card currentCard;
     public Card testCard;
+    public int cardStartID;
 
     //Card
     private string[,] cardList = new string[155,11];
@@ -50,8 +51,9 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         readTextFile();
-        currentActiveCardRow = 0;
+        currentActiveCardRow = cardStartID;
         LoadCardFromArray(currentActiveCardRow);
+
         //LoadCard(testCard);
     }
 
@@ -198,23 +200,31 @@ public class GameManager : MonoBehaviour
 
     public void LoadCardFromArray(int cardID)
     {
-        for (int row = 1; row < cardList.GetLength(0); row++)
+        if (cardID == 800)
         {
-            if (cardID == int.Parse(cardList[row, (int)columnHeading.cardID])) //this is the right row for the cards! Now we need to load the card.
+            //ENDING trigger
+        }
+        else
+        {
+            for (int row = 1; row < cardList.GetLength(0); row++)
             {
-                currentActiveCardRow = row;
+                if (cardID == int.Parse(cardList[row, (int)columnHeading.cardID])) //this is the right row for the cards! Now we need to load the card.
+                {
+                    currentActiveCardRow = row;
 
-                LeftUpQuote = cardList[row, (int)columnHeading.LeftOptionText];
-                RightDownQuote = cardList[row, (int)columnHeading.RightOptionText];
-                MainTextQuote = cardList[row, (int)columnHeading.Main_body_text];
-                //CARD details update when cards load
-                upText.text = LeftUpQuote;
-                downText.text = RightDownQuote;
-                mainText.text = MainTextQuote;
+                    LeftUpQuote = cardList[row, (int)columnHeading.LeftOptionText];
+                    RightDownQuote = cardList[row, (int)columnHeading.RightOptionText];
+                    MainTextQuote = cardList[row, (int)columnHeading.Main_body_text];
+                    //CARD details update when cards load
+                    upText.text = LeftUpQuote;
+                    downText.text = RightDownQuote;
+                    mainText.text = MainTextQuote;
 
-                break;
+                    break;
+                }
             }
         }
+        
         Debug.Log("Card has finished loading without quiting the function.");
     }
 
@@ -245,16 +255,37 @@ public class GameManager : MonoBehaviour
     public void NextCardFromArray(ChoiceDirection choice)
     {
         Debug.Log("CardID : " + currentActiveCardRow + " swiped " + choice.ToString());
+        
+        if (choice == ChoiceDirection.left)
+        {
 
-        if (choice == ChoiceDirection.left) 
-        {
-            //load card Left choice
-            LoadCardFromArray(int.Parse(cardList[currentActiveCardRow, (int)columnHeading.LeftNextCardID]));
+            //Check if the next card needs to be randomized
+            if (cardList[currentActiveCardRow, (int)columnHeading.Randomize] == "TRUE")
+            {
+                //randomize
+                string[] randomizedCol = cardList[currentActiveCardRow, (int)columnHeading.LeftNextCardID].Split(','); //This is char?
+                Debug.Log("Choices #:" + randomizedCol.Length);
+                LoadCardFromArray(int.Parse(randomizedCol[Random.Range(0, 2)]));
+            }
+            else //load card Left choice if NOT randomized
+            {
+                LoadCardFromArray(int.Parse(cardList[currentActiveCardRow, (int)columnHeading.LeftNextCardID]));
+            }
         }
-        else 
+        else
         {
-            //load card Right choice
-            LoadCardFromArray(int.Parse(cardList[currentActiveCardRow, (int)columnHeading.RightNextCardID]));
+            //Check if the next card needs to be randomized
+            if (cardList[currentActiveCardRow, (int)columnHeading.Randomize] == "TRUE")
+            {
+                //randomize
+                string[] randomizedCol = cardList[currentActiveCardRow, (int)columnHeading.RightNextCardID].Split(','); //This is char?
+                Debug.Log("Choices #:" + randomizedCol.Length);
+                LoadCardFromArray(int.Parse(randomizedCol[Random.Range(0, 2)]));
+            }
+            else //load card Right choice if NOT randomized
+            {
+                LoadCardFromArray(int.Parse(cardList[currentActiveCardRow, (int)columnHeading.RightNextCardID]));
+            }
         }
     }
 
