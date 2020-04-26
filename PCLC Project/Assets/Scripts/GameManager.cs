@@ -43,13 +43,19 @@ public class GameManager : MonoBehaviour
     List<string> stringList = new List<string>();
     private int currentActiveCardRow;
 
+    //Values
+    private List<string> valuesList;
+
     //Card swipe states
     public enum ChoiceDirection { left, right };
 
+    //CSV column headings
     public enum columnHeading { cardEnum = 0, cardID = 1, ActSection = 2, Main_body_text = 3, LeftOptionText = 4, LeftNextCardID = 5, LeftValue = 6, RightOptionText = 7, RightNextCardID = 8, RightValue = 9, Randomize = 10};
 
     void Start()
     {
+        valuesList = new List<string>();
+
         readTextFile();
         currentActiveCardRow = cardStartID;
         LoadCardFromArray(currentActiveCardRow);
@@ -215,6 +221,24 @@ public class GameManager : MonoBehaviour
                     LeftUpQuote = cardList[row, (int)columnHeading.LeftOptionText];
                     RightDownQuote = cardList[row, (int)columnHeading.RightOptionText];
                     MainTextQuote = cardList[row, (int)columnHeading.Main_body_text];
+
+                    //need to remove extra "" from start and end of string
+                    if (MainTextQuote[0] == '"')
+                    {
+                        MainTextQuote = MainTextQuote.Trim('"');
+                        MainTextQuote = "'" + MainTextQuote + "'";
+                    }
+                    if (LeftUpQuote[0] == '"')
+                    {
+                        LeftUpQuote = LeftUpQuote.Trim('"');
+                        LeftUpQuote = "'" + LeftUpQuote + "'";
+                    }
+                    if (RightDownQuote[0] == '"')
+                    {
+                        RightDownQuote = RightDownQuote.Trim('"');
+                        RightDownQuote = "'" + RightDownQuote + "'";
+                    }
+
                     //CARD details update when cards load
                     upText.text = LeftUpQuote;
                     downText.text = RightDownQuote;
@@ -258,6 +282,17 @@ public class GameManager : MonoBehaviour
         
         if (choice == ChoiceDirection.left)
         {
+            //Give specific value points
+            if (cardList[currentActiveCardRow, (int)columnHeading.LeftValue] == "")
+            {
+                //do nothing if there is nothing here
+            }
+            else
+            {
+                valuesList.Add(cardList[currentActiveCardRow, (int)columnHeading.LeftValue]);
+
+                Debug.Log("valuesList = " + string.Join("", new List<string>(valuesList).ConvertAll(i => i.ToString()).ToArray()));
+            }
 
             //Check if the next card needs to be randomized
             if (cardList[currentActiveCardRow, (int)columnHeading.Randomize] == "TRUE")
