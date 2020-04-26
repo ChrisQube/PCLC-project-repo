@@ -1,6 +1,6 @@
 card enum|cardID|Act/section|Main body test|LeftOption|LeftNextCardID|LeftValue|RightOption|RightNextCardID|RightValue|Random
-0|0|0|You can choose decisions by swiping left or right. Try swiping left!|Continue!|1||The other left!|0||FALSE
-1|1|0|Nice! Now try swiping right!|This is still left!|1||Continue!|2||FALSE
+0|0|0|You can choose decisions by swiping left or right. Try swiping left!|Continue!|1||The other left!|||FALSE
+1|1|0|Nice! Now try swiping right!|This is still left!|||Continue!|2||FALSE
 2|2|0|Great work! This game is about your choices and values. Choose wisely!|Let's begin!|100||Wait... start the tutorial again!|0||FALSE
 3|100|1|In this game you will be making key decisions which shapes the outcomes of various characters.|Continue|101||Continue|101||FALSE
 4|101|1|It is late 2004. It is a calm Friday evening and you are tending to your baby son.|Continue|102||Continue|102||FALSE
@@ -61,7 +61,7 @@ card enum|cardID|Act/section|Main body test|LeftOption|LeftNextCardID|LeftValue|
 59|307|3|"""___TS___ has a severe infection that is spreading in the blood."""|Continue|308||Continue|308||FALSE
 60|308|3|"""There is a high chance that ___TS___ will not survive."""|Continue|309||Continue|309||FALSE
 61|309|3|Feeling exhausted, this felt like insult to injury.|"""No, he is going to live."""|310|Courage|Don't reply to their comment.|310|Health|FALSE
-62|310|3|"The staff members back off, ""We will be here to support you if you need."""|Continue|311||Continue|311||FALSE
+62|310|3|The staff members back off, 'We will be here to support you if you need.'|Continue|311||Continue|311||FALSE
 63|311|3|Now the following day, ___TS___'s vital signs had recovered a little from hours before.|Continue|312,313,314||Continue|312,313,314||TRUE
 64|312|3|You return home and get some time to reflect. Which do you agree with more?|"""Need to go with the flow."""|400|Patience|"""Can learn from positives and negatives."""|400|Selflessness|FALSE
 65|313|3|You return home and get some time to reflect. Which do you agree with more?|"""Honesty is key."""|400|Trust|"""Follow your gut."""|400|Selflessness|FALSE
@@ -93,7 +93,7 @@ card enum|cardID|Act/section|Main body test|LeftOption|LeftNextCardID|LeftValue|
 91|512|5|You are excited too. But, there is another issue you are considering.|Continue|513||Continue|513||FALSE
 92|513|5|__TS__ has been having chest infections very freuqnetly.|Continue|514||Continue|514||FALSE
 93|514|5|You are worried that this could increase the risk of more exacerbations of infections.|Continue|515||Continue|515||FALSE
-94|515|5|"__KS__ stares at you with excited eyes and asks you, ""Can I go!?"""|__KS__ should have some fun|516|Justice|Best not|522|Health|FALSE
+94|515|5|__KS__ stares at you with excited eyes and asks you, 'Can I go!?'|__KS__ should have some fun|516|Justice|Best not|522|Health|FALSE
 95|516|5|Almost exploding with joy, __KS__ leaps into the air with his invitation.|Continue|517||Continue|517||FALSE
 96|517|5|After the party in the weekend, the only difference you notice with __KS__ was a small cake stain on his cheek|"""Where's my cake?"""|518|Relationships|Wipe off the cake from his face|519|-|FALSE
 97|518|5|__KS__ smiles and points at his tummy.|Continue|519||Continue|519||FALSE
@@ -102,7 +102,7 @@ card enum|cardID|Act/section|Main body test|LeftOption|LeftNextCardID|LeftValue|
 100|521|5|You swiftly take __TS__ to the hospital where he was admitted and discharged a few days later.|Continue|601||Continue|601||FALSE
 101|522|5|The glimmer of hope in __KS__ fades and you see him nod.|Try to reason with __KS__|523|Justice|Try do something creative|524|Selflessness|FALSE
 102|523|5|__KS__ nods in understanding, but does not reply. It wasn't an easy decision for you to make either.|Continue|526||Continue|526||FALSE
-103|524|5|"You tell __KS__, ""That is because we will be having a party at home!"""|Continue|525|Selflessness|Continue|525|Selflessness|FALSE
+103|524|5|You tell __KS__, 'That is because we will be having a party at home!'|Continue|525|Selflessness|Continue|525|Selflessness|FALSE
 104|525|5|Still not back to full excitement, you know he was still looking forward to the other party.|Continue|526||Continue|526||FALSE
 105|526|5|A while later, __KS__ wanted to pick up some social team sports like rugby.|Continue|527||Continue|527||FALSE
 106|527|5|All his friends are playing it! He wanted to give it a go himself too.|Best not either, too many people there|528|Health|Okay, it is only fair|531|Justice|FALSE

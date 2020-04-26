@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System.IO;
+using System;
+using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,9 +16,13 @@ public class GameManager : MonoBehaviour
 
     public CardController mainCardController;
 
+    public GameObject wallpaperGameObject;
+
     [Header("Tweaking variables")]
     public float fMovingSpeed;
+    public float fSwivleSpeed;
     Vector3 pos;
+    public float fWallpaperMoveSpeed;
 
     [Header("UI")]
     public TextMeshProUGUI display; //for debugging
@@ -38,10 +44,17 @@ public class GameManager : MonoBehaviour
     public Card testCard;
     public int cardStartID;
 
+    [Header("Pending Card")]
+    public bool isSubstituting = false;
+    public float fRotatingSpeed;
+    public Vector3 cardRotation;
+    public Vector3 currentRotation; 
+    public Vector3 initialRotation;
+
     //Card
     private string[,] cardList = new string[155,11];
     List<string> stringList = new List<string>();
-    private int currentActiveCardRow;
+    public int currentActiveCardRow;
 
     //Values
     private List<string> valuesList;
@@ -108,8 +121,12 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-       //Movement
-       if (Input.GetMouseButton(0) && mainCardController.isMouseOver)
+        //Wallpaper movement
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        wallpaperGameObject.transform.position = new Vector2(mousePosition.x * fWallpaperMoveSpeed + 0.76f, mousePosition.y * fWallpaperMoveSpeed + 0.76f);
+
+        //Movement
+        if (Input.GetMouseButton(0) && mainCardController.isMouseOver && !isSubstituting)
        {
             Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             //if (pos.y > 0.35)
@@ -123,14 +140,41 @@ public class GameManager : MonoBehaviour
 
             pos.y = SmoothCardYPosition(pos.y);
             cardGameObject.transform.position = pos;
+            cardGameObject.transform.eulerAngles = new Vector3(0, 0, cardGameObject.transform.position.x * fSwivleSpeed);
        }
-       else
+       else if (isSubstituting)
+        {
+            cardGameObject.transform.position = new Vector3(0, 0, 0);
+            //begin rotating back of card and front card
+            cardGameObject.transform.eulerAngles = Vector3.MoveTowards(cardGameObject.transform.rotation.eulerAngles, cardRotation, fRotatingSpeed);
+
+            //Debug.Log("Rotation = " + cardGameObject.transform.eulerAngles.y);
+            if (cardGameObject.transform.eulerAngles.y < 90f)
+            {
+                //show text
+                mainText.faceColor = new Color32(mainText.faceColor.r, mainText.faceColor.g, mainText.faceColor.b, 255);
+                //Debug.Log("Show text");
+            }
+            else //hide text
+            {
+                mainText.faceColor = new Color32(mainText.faceColor.r, mainText.faceColor.g, mainText.faceColor.b, 0);
+                //Debug.Log("Hidden text");
+            }
+
+        }
+        else //Only reset if not substituting
         {
             cardGameObject.transform.position = Vector2.MoveTowards(cardGameObject.transform.position, new Vector2(0, 0), fMovingSpeed);
+            cardGameObject.transform.eulerAngles = new Vector3(0, 0, cardGameObject.transform.position.x * fSwivleSpeed);
         }
-        display.text = "x = " + cardGameObject.transform.position.x.ToString() + "; y = " + cardGameObject.transform.position.y.ToString();
+        //display.text = "x = " + cardGameObject.transform.position.x.ToString() + "; y = " + cardGameObject.transform.position.y.ToString(); //For debug
 
 
+        if (cardGameObject.transform.eulerAngles == cardRotation)
+        {
+            isSubstituting = false;
+            Debug.Log("Finished substituting");
+        }
         //CARD details update every frame (can make more efficient by only updating when cards load)
         //upText.text = LeftUpQuote;
         //downText.text = RightDownQuote;
@@ -206,9 +250,24 @@ public class GameManager : MonoBehaviour
 
     public void LoadCardFromArray(int cardID)
     {
+
         if (cardID == 800)
         {
+            currentActiveCardRow = 800;
             //ENDING trigger
+            //Debug.Log("Calculate score...");
+
+            //string[] testValues = { "bird", "cat", "bird", "dog", "bird", "man", "frog", "cat" };
+            //valuesList = new List<string>(testValues);
+
+            string[] Top3Values = new string[3];
+            Top3Values = CalculateTop3Values(valuesList);
+
+            //Debug.Log("Top values: " + Top3Values[0] + ", " + Top3Values[1] + ", " + Top3Values[2]);
+
+            mainText.text = "Congratulations! You have completed the game. Your top values were: " + Top3Values[0] + ", " + Top3Values[1] + " and " + Top3Values[2];
+            upText.text = "Back to Main Menu";
+            downText.text = "Play again";
         }
         else
         {
@@ -248,8 +307,52 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+
+        //Debug.Log("Card has finished loading without quiting the function.");
+
+        //reset position of card
+
+        //intialize rotating card
+        isSubstituting = true;
+        cardGameObject.transform.eulerAngles = initialRotation;
+    }
+
+    private string[] CalculateTop3Values(List<string> valuesList)
+    {
+        var result = new Dictionary<string, int>();
+
+        foreach (string value in valuesList)
+        {
+            if (result.TryGetValue(value, out int count))
+            {
+                // Increase existing value.
+                result[value] = count + 1;
+            }
+            else
+            {
+                // New value, set to 1.
+                result.Add(value, 1);
+            }
+        }
+
+        //var sorted = from pair in result
+        //             orderby pair.Value descending
+        //             select pair;
+
+        //LINQ
+        var top3 = result.OrderByDescending(pair => pair.Value).Take(3);
+
+        List<string> listStrTop3 = new List<string>();
+
+        // Display all results in order.
+        foreach (var pair in top3)
+        {
+            listStrTop3.Add(pair.Key);
+        }
+
+        //returns string[3]
+        return listStrTop3.ToArray();
         
-        Debug.Log("Card has finished loading without quiting the function.");
     }
 
     public void LoadCard(Card card)
@@ -278,50 +381,91 @@ public class GameManager : MonoBehaviour
 
     public void NextCardFromArray(ChoiceDirection choice)
     {
-        Debug.Log("CardID : " + currentActiveCardRow + " swiped " + choice.ToString());
-        
-        if (choice == ChoiceDirection.left)
+        //Debug.Log("CardID : " + currentActiveCardRow + " swiped " + choice.ToString());
+        if (currentActiveCardRow == 800) //ending
         {
-            //Give specific value points
-            if (cardList[currentActiveCardRow, (int)columnHeading.LeftValue] == "")
+            if (choice == ChoiceDirection.left) //left Swipe
             {
-                //do nothing if there is nothing here
+                //Return to main menu
             }
             else
             {
-                valuesList.Add(cardList[currentActiveCardRow, (int)columnHeading.LeftValue]);
-
-                Debug.Log("valuesList = " + string.Join("", new List<string>(valuesList).ConvertAll(i => i.ToString()).ToArray()));
-            }
-
-            //Check if the next card needs to be randomized
-            if (cardList[currentActiveCardRow, (int)columnHeading.Randomize] == "TRUE")
-            {
-                //randomize
-                string[] randomizedCol = cardList[currentActiveCardRow, (int)columnHeading.LeftNextCardID].Split(','); //This is char?
-                Debug.Log("Choices #:" + randomizedCol.Length);
-                LoadCardFromArray(int.Parse(randomizedCol[Random.Range(0, 2)]));
-            }
-            else //load card Left choice if NOT randomized
-            {
-                LoadCardFromArray(int.Parse(cardList[currentActiveCardRow, (int)columnHeading.LeftNextCardID]));
+                //Start again
+                ResetGameVariables();
             }
         }
         else
         {
-            //Check if the next card needs to be randomized
-            if (cardList[currentActiveCardRow, (int)columnHeading.Randomize] == "TRUE")
+            if (choice == ChoiceDirection.left) //left Swipe
             {
-                //randomize
-                string[] randomizedCol = cardList[currentActiveCardRow, (int)columnHeading.RightNextCardID].Split(','); //This is char?
-                Debug.Log("Choices #:" + randomizedCol.Length);
-                LoadCardFromArray(int.Parse(randomizedCol[Random.Range(0, 2)]));
+                //Give specific Left value points
+                if (cardList[currentActiveCardRow, (int)columnHeading.LeftValue] == "")
+                {
+                    //do nothing if there is nothing here
+                }
+                else
+                {
+                    valuesList.Add(cardList[currentActiveCardRow, (int)columnHeading.LeftValue]);
+
+                    Debug.Log("valuesList = " + string.Join("", new List<string>(valuesList).ConvertAll(i => i.ToString()).ToArray()));
+                }
+
+                //Check if the next card needs to be randomized
+                if (cardList[currentActiveCardRow, (int)columnHeading.LeftNextCardID] == "")
+                {
+                    //do nothing e.g. in tutorial, we don't want to reload (flip) the same card 
+                }
+                else if (cardList[currentActiveCardRow, (int)columnHeading.Randomize] == "TRUE")
+                {
+                    //randomize
+                    string[] randomizedCol = cardList[currentActiveCardRow, (int)columnHeading.LeftNextCardID].Split(','); //This is char?
+                                                                                                                           //Debug.Log("Random Choice # of Paths:" + randomizedCol.Length);
+                    LoadCardFromArray(int.Parse(randomizedCol[UnityEngine.Random.Range(0, 2)]));
+                }
+                else //load card Left choice if NOT randomized
+                {
+                    LoadCardFromArray(int.Parse(cardList[currentActiveCardRow, (int)columnHeading.LeftNextCardID]));
+                }
             }
-            else //load card Right choice if NOT randomized
+            else //Right Swipe
             {
-                LoadCardFromArray(int.Parse(cardList[currentActiveCardRow, (int)columnHeading.RightNextCardID]));
+                //Give specific Right value points 
+                if (cardList[currentActiveCardRow, (int)columnHeading.RightValue] == "")
+                {
+                    //do nothing if there is nothing here
+                }
+                else
+                {
+                    valuesList.Add(cardList[currentActiveCardRow, (int)columnHeading.RightValue]);
+
+                    Debug.Log("valuesList = " + string.Join("", new List<string>(valuesList).ConvertAll(i => i.ToString()).ToArray()));
+                }
+
+                //Check if the next card needs to be randomized
+                if (cardList[currentActiveCardRow, (int)columnHeading.RightNextCardID] == "")
+                {
+                    //do nothing e.g. in tutorial, we don't want to reload (flip) the same card 
+                }
+                else if (cardList[currentActiveCardRow, (int)columnHeading.Randomize] == "TRUE")
+                {
+                    //randomize
+                    string[] randomizedCol = cardList[currentActiveCardRow, (int)columnHeading.RightNextCardID].Split(','); //This is char?
+                                                                                                                            //Debug.Log("Random Choice # of Paths:" + randomizedCol.Length);
+                    LoadCardFromArray(int.Parse(randomizedCol[UnityEngine.Random.Range(0, 2)]));
+                }
+                else //load card Right choice if NOT randomized
+                {
+                    LoadCardFromArray(int.Parse(cardList[currentActiveCardRow, (int)columnHeading.RightNextCardID]));
+                }
             }
         }
+    }
+
+    private void ResetGameVariables()
+    {
+        valuesList = new List<string>();
+        currentActiveCardRow = 101; //Skip the tutorial
+        LoadCardFromArray(currentActiveCardRow);
     }
 
     public void NextCard(ChoiceDirection choice)
@@ -361,6 +505,8 @@ public class GameManager : MonoBehaviour
                 break;
         }
     }
+
+    
 
 }
 
