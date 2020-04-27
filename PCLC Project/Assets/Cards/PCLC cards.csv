@@ -11,13 +11,13 @@ card enum|cardID|Act/section|Main body test|LeftOption|LeftNextCardID|LeftValue|
 9|106|1|He is rushed to NICU. A decision was made to intubate the boy.|Continue|107||Continue|107||FALSE
 10|107|1|Despite the organized chaos of the delivery suite. Things have now settled and are quite.|I want to find my child.|108|Selflessness|I will go after a brief rest|108|Health|FALSE
 11|108|1|As you walk into the bustling NICU environment, you were greeted by staff.|I want to be with my child.|109|Relationships|I shouldn't create trouble for the staff.|109|Patience|FALSE
-12|109|1|"""You must be the parents of ___TS___. He is just over here."""|Go find ___TS___.|110||Go find ___TS___.|110||FALSE
-13|110|1|Little ___TS___ has been intubated and has a umbilical vein catheter.|"""What have you done to my baby?!"""|111|Justice|"""How long will he need to be in here for?"""|112|Trust|FALSE
+12|109|1|"""You must be the parents of __TS__. He is just over here."""|Go find ___TS___.|110||Go find ___TS___.|110||FALSE
+13|110|1|Little __TS__ has been intubated and has a umbilical vein catheter.|"""What have you done to my baby?!"""|111|Justice|"""How long will he need to be in here for?"""|112|Trust|FALSE
 14|111|1|"""We are doing everything we can to keep your baby healthy by providing oxygen and nutrients."""|"""I see... How long will he need to be in here for?"""|112||"""I see... How long will he need to be in here for?"""|112||FALSE
 15|112|1|"""We...are not sure... it is too early to tell."""|"""I see..."""|201,219,227||"""I see..."""|201,219,227||TRUE
-16|201|2|A week has passed and the medical team has growing concerns of ___TS___'s vision.|Continue|202||Continue|202||FALSE
-17|202|2|"""We would like have ___TS___ reviewed in Christchurch."""|Go to Christchurch|204|Health|I need to prepare my commitments here first.|203|Finances|FALSE
-18|203|2|"""Unfortuantely, Christchurch is the closest place which has the equipment to investigate ___TS___."""|Okay|204||Okay|204||FALSE
+16|201|2|A week has passed and the medical team has growing concerns of __TS__'s vision.|Continue|202||Continue|202||FALSE
+17|202|2|"""We would like have __TS__ reviewed in Christchurch."""|Go to Christchurch|204|Health|I need to prepare my commitments here first.|203|Finances|FALSE
+18|203|2|"""Unfortuantely, Christchurch is the closest place which has the equipment to investigate __TS__."""|Okay|204||Okay|204||FALSE
 19|204|2|After a good 5 hour drive to Christchurch you arrive to the hospital.|Continue|205||Continue|205||FALSE
 20|205|2|Christchurch hospital feels even more busy.|Enquire about an eye appointment.|207|Courage|Best not distrub the staff.|206|Patience|FALSE
 21|206|2|No one seems to have noticed your presence.|Contiue waiting|206|Patience|Take the courage to ask.|207|Courage|FALSE
@@ -33,7 +33,7 @@ card enum|cardID|Act/section|Main body test|LeftOption|LeftNextCardID|LeftValue|
 31|216|2|The sun hasn't yet set. You decide to push through the news, only 5 hours to get home.|Drive home|218||Drive home|218||FALSE
 32|217|2|It has been a long day already with little gain. Best leave tomorrow morning.|Rest|218||Rest|218||FALSE
 33|218|2|Arriving back home. You long for a good rest.|Rest|301||Rest|301||FALSE
-34|219|2|"You notice that your baby's skin has a ""yellow-ish"" tint."|Inform someone|220|Courage|Probably just lighting|221|Patience|FALSE
+34|219|2|You notice that your baby's skin has a yellow-ish tint.|Inform someone|220|Courage|Probably just lighting|221|Patience|FALSE
 35|220|2|A medical staff agrees that __TS__ has jaundice.|Continue|222||Continue|222||FALSE
 36|221|2|After a few hours, a nurse informs you she has noticed that __TS__ is looking jaundiced.|Continue|222||Continue|222||FALSE
 37|222|2|__TS__ is treated with phototherapy. Which is successful.|Continue|223||Continue|223||FALSE
