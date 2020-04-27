@@ -65,6 +65,10 @@ public class GameManager : MonoBehaviour
     //CSV column headings
     public enum columnHeading { cardEnum = 0, cardID = 1, ActSection = 2, Main_body_text = 3, LeftOptionText = 4, LeftNextCardID = 5, LeftValue = 6, RightOptionText = 7, RightNextCardID = 8, RightValue = 9, Randomize = 10};
 
+    [Header("Main Menu")]
+    public float fBaseTextSize;
+    public TextMeshPro titleText;
+
     void Start()
     {
         valuesList = new List<string>();
@@ -269,6 +273,22 @@ public class GameManager : MonoBehaviour
             upText.text = "Back to Main Menu";
             downText.text = "Play again";
         }
+        else if (cardID == 1000) // Main menu
+        {
+            currentActiveCardRow = 1000;
+            titleText.text = "Core";
+            mainText.text = "Swipe <- to start\n\nSwipe -> Options";
+            upText.text = "Start";
+            downText.text = "Credits";
+        }
+        else if (cardID == 1001) //Options menu
+        {
+            currentActiveCardRow = 1001;
+            titleText.text = "Credits";
+            mainText.text = "Thank you to the Sydney family!\n\nMade by\nChris Wang";
+            upText.text = "<- Back";
+            downText.text = "Back ->";
+        }
         else
         {
             for (int row = 1; row < cardList.GetLength(0); row++)
@@ -387,12 +407,34 @@ public class GameManager : MonoBehaviour
             if (choice == ChoiceDirection.left) //left Swipe
             {
                 //Return to main menu
+                ResetGameVariables();
+                currentActiveCardRow = 1000;
+                LoadCardFromArray(1000);
             }
             else
             {
                 //Start again
                 ResetGameVariables();
+                currentActiveCardRow = 101; //Skip the tutorial
+                LoadCardFromArray(currentActiveCardRow);
             }
+        }
+        else if (currentActiveCardRow == 1000)
+        {
+            if (choice == ChoiceDirection.left) //left Swipe
+            {
+                //Start game
+                LoadCardFromArray(0);
+            }
+            else
+            {
+                //Options
+                LoadCardFromArray(1001);
+            }
+        }
+        else if (currentActiveCardRow == 1001)
+        {
+            LoadCardFromArray(1000);
         }
         else
         {
@@ -464,8 +506,6 @@ public class GameManager : MonoBehaviour
     private void ResetGameVariables()
     {
         valuesList = new List<string>();
-        currentActiveCardRow = 101; //Skip the tutorial
-        LoadCardFromArray(currentActiveCardRow);
     }
 
     public void NextCard(ChoiceDirection choice)
