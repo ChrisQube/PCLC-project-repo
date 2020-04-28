@@ -173,6 +173,7 @@ public class GameManager : MonoBehaviour
             if (!playedSound)
             {
                 playedSound = true;
+                audioSource.volume = 0.25f;
                 audioSource.pitch = UnityEngine.Random.Range(0.8f, 1.2f);
                 audioSource.Play();
                 Debug.Log(audioSource.pitch);
@@ -291,9 +292,9 @@ public class GameManager : MonoBehaviour
         {
             currentActiveCardRow = 1000;
             titleText.text = "Core";
-            mainText.text = "Swipe <- to start\n\nSwipe -> Options";
-            upText.text = "Start";
-            downText.text = "Credits";
+            mainText.text = "Swipe <- to start\n\nSwipe -> Credits";
+            upText.text = "Let's go!";
+            downText.text = "Thank you!";
         }
         else if (cardID == 1001) //Options menu
         {
