@@ -69,6 +69,10 @@ public class GameManager : MonoBehaviour
     public float fBaseTextSize;
     public TextMeshPro titleText;
 
+    [Header("Sound Effects")]
+    public AudioSource audioSource;
+    private bool playedSound;
+
     void Start()
     {
         valuesList = new List<string>();
@@ -164,6 +168,13 @@ public class GameManager : MonoBehaviour
                 mainText.faceColor = new Color32(mainText.faceColor.r, mainText.faceColor.g, mainText.faceColor.b, 0);
                 //Debug.Log("Hidden text");
             }
+            if (!playedSound)
+            {
+                playedSound = true;
+                audioSource.pitch = UnityEngine.Random.Range(0.8f, 1.2f);
+                audioSource.Play();
+                Debug.Log(audioSource.pitch);
+            }
 
         }
         else //Only reset if not substituting
@@ -177,6 +188,7 @@ public class GameManager : MonoBehaviour
         if (cardGameObject.transform.eulerAngles == cardRotation)
         {
             isSubstituting = false;
+            playedSound = false;
             Debug.Log("Finished substituting");
         }
         //CARD details update every frame (can make more efficient by only updating when cards load)
