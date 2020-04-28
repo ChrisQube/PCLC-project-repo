@@ -72,8 +72,8 @@ public class GameManager : MonoBehaviour
     [Header("Sound Effects")]
     public AudioSource audioSource;
     private bool playedSound;
-    public ParticleSystem particles;
-    public GameObject particleGameObject;
+    //public ParticleSystem particles;
+    //public GameObject particleGameObject;
 
     void Start()
     {
@@ -415,17 +415,17 @@ public class GameManager : MonoBehaviour
 
     public void NextCardFromArray(ChoiceDirection choice)
     {
-        //particle system
-        if (choice == ChoiceDirection.left)
-        {
-            particleGameObject.transform.position = new Vector2(-1.5f, 0f);
-            particles.Play();
-        }
-        else
-        {
-            particleGameObject.transform.position = new Vector2(1.5f, 0f);
-            particles.Play();
-        }
+        ////particle system
+        //if (choice == ChoiceDirection.left)
+        //{
+        //    particleGameObject.transform.position = new Vector2(-1.5f, 0f);
+        //    particles.Play();
+        //}
+        //else
+        //{
+        //    particleGameObject.transform.position = new Vector2(1.5f, 0f);
+        //    particles.Play();
+        //}
         
 
         //Debug.Log("CardID : " + currentActiveCardRow + " swiped " + choice.ToString());
