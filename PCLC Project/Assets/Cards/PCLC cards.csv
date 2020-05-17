@@ -11,13 +11,13 @@ card enum|cardID|Act/section|Main body test|LeftOption|LeftNextCardID|LeftValue|
 9|106|1|He is rushed to NICU. A decision was made to intubate the boy.|Continue|107||Continue|107||FALSE
 10|107|1|Despite the organized chaos of the delivery suite. Things have now settled and are quite.|I want to find my child.|108|Selflessness|I will go after a brief rest|108|Health|FALSE
 11|108|1|As you walk into the bustling NICU environment, you were greeted by staff.|I want to be with my child.|109|Relationships|I shouldn't create trouble for the staff.|109|Patience|FALSE
-12|109|1|"""You must be the parents of Travis. He is just over here."""|Go find Travis.|110||Go find Travis.|110||FALSE
-13|110|1|Little Travis has been intubated and has a umbilical vein catheter.|"""What have you done to my baby?!"""|111|Justice|"""How long will he need to be in here for?"""|112|Trust|FALSE
-14|111|1|"""We are doing everything we can to keep your baby healthy by providing oxygen and nutrients."""|"""I see... How long will he need to be in here for?"""|112||"""I see... How long will he need to be in here for?"""|112||FALSE
-15|112|1|"""We...are not sure... it is too early to tell."""|"""I see..."""|201,219,227||"""I see..."""|201,219,227||TRUE
+12|109|1|You must be the parents of Travis. He is just over here.'|Go find Travis.|110||Go find Travis.|110||FALSE
+13|110|1|Little Travis has been intubated and has a umbilical vein catheter.|What have you done to my baby?!'|111|Justice|How long will he need to be in here for?'|112|Trust|FALSE
+14|111|1|We are doing everything we can to keep your baby healthy by providing oxygen and nutrients.'|I see... How long will he need to be in here for?'|112||I see... How long will he need to be in here for?'|112||FALSE
+15|112|1|We...are not sure... it is too early to tell.'|I see...'|201,219,227||I see...'|201,219,227||TRUE
 16|201|2|A week has passed and the medical team has growing concerns of Travis's vision.|Continue|202||Continue|202||FALSE
-17|202|2|"""We would like have Travis reviewed in Christchurch."""|Go to Christchurch|204|Health|I need to prepare my commitments here first.|203|Finances|FALSE
-18|203|2|"""Unfortuantely, Christchurch is the closest place which has the equipment to investigate Travis."""|Okay|204||Okay|204||FALSE
+17|202|2|We would like have Travis reviewed in Christchurch.'|Go to Christchurch|204|Health|I need to prepare my commitments here first.|203|Finances|FALSE
+18|203|2|Unfortuantely, Christchurch is the closest place which has the equipment to investigate Travis.'|Okay|204||Okay|204||FALSE
 19|204|2|After a good 5 hour drive to Christchurch you arrive to the hospital.|Continue|205||Continue|205||FALSE
 20|205|2|Christchurch hospital feels even more busy.|Enquire about an eye appointment.|207|Courage|Best not distrub the staff.|206|Patience|FALSE
 21|206|2|No one seems to have noticed your presence.|Contiue waiting|206|Patience|Take the courage to ask.|207|Courage|FALSE
@@ -26,7 +26,7 @@ card enum|cardID|Act/section|Main body test|LeftOption|LeftNextCardID|LeftValue|
 24|209|2|You take some time to check in with yourself, at least the fresh air is relaxing.|Go back|210||Go back|210||FALSE
 25|210|2|Finally, your turn for a diagnosis. It feels like forever by now.|Continue|211||Continue|211||FALSE
 26|211|2|Within 10 minutes, the doctor informs you of the diagnosis.|Continue|212||Continue|212||FALSE
-27|212|2|"""This is a typical presentation of bilateral retinopathy of prematurity."""|Continue|213||Continue|213||FALSE
+27|212|2|This is a typical presentation of bilateral retinopathy of prematurity.'|Continue|213||Continue|213||FALSE
 28|213|2|The doctor explains that this may cause Travis to be blind in one or both eyes.|Continue|215||Take a deep breath|214||FALSE
 29|214|2|You feel cold air enter your body and leave as swiftly as it came.|Continue|215||Continue|215||FALSE
 30|215|2|Complete with the appointment, you are unsure whether to drive back the same day.|Drive back tonight|216|Selflessness|Stay a night in Christchurch|217|Health|FALSE
@@ -53,19 +53,19 @@ card enum|cardID|Act/section|Main body test|LeftOption|LeftNextCardID|LeftValue|
 51|236|2|Another week as passed and you don't see the family at NICU.|Continue|237||Continue|237||FALSE
 52|237|2|You later hear through the grape vines that their child had died due to infection.|Continue|301||Continue|301||FALSE
 53|301|3|It is around midnight when you get a ring from hospital staff.|Continue|302||Continue|302||FALSE
-54|302|3|"""We currently suspect that Travis has an infection in the blood."""|Go to hospital immediately.|305|Health|Wait until morning|303|Patience|FALSE
+54|302|3|We currently suspect that Travis has an infection in the blood.'|Go to hospital immediately.|305|Health|Wait until morning|303|Patience|FALSE
 55|303|3|There's lots to organize especially with another boy at home. Best to leave in the morning.|Continue|304||Continue|304||FALSE
 56|304|3|You couldn't get a good sleep after that call, but you are ready to go to hospital now.|Continue|306||Continue|306||FALSE
 57|305|3|It's now 4am in the morning. Completely exhausted by the recent events you try to rest.|Continue|306||Continue|306||FALSE
 58|306|3|The medical team approaches you with a grim look. You see one of the nurses get quite emotional.|Continue|307||Continue|307||FALSE
-59|307|3|"""Travis has a severe infection that is spreading in the blood."""|Continue|308||Continue|308||FALSE
-60|308|3|"""There is a high chance that Travis will not survive."""|Continue|309||Continue|309||FALSE
-61|309|3|Feeling exhausted, this felt like insult to injury.|"""No, he is going to live."""|310|Courage|Don't reply to their comment.|310|Health|FALSE
+59|307|3|Travis has a severe infection that is spreading in the blood.'|Continue|308||Continue|308||FALSE
+60|308|3|There is a high chance that Travis will not survive.'|Continue|309||Continue|309||FALSE
+61|309|3|Feeling exhausted, this felt like insult to injury.|No, he is going to live.'|310|Courage|Don't reply to their comment.|310|Health|FALSE
 62|310|3|The staff members back off, 'We will be here to support you if you need.'|Continue|311||Continue|311||FALSE
 63|311|3|Now the following day, Travis's vital signs had recovered a little from hours before.|Continue|312,313,314||Continue|312,313,314||TRUE
-64|312|3|You return home and get some time to reflect. Which do you agree with more?|"""Need to go with the flow."""|400|Patience|"""Can learn from positives and negatives."""|400|Selflessness|FALSE
-65|313|3|You return home and get some time to reflect. Which do you agree with more?|"""Honesty is key."""|400|Trust|"""Follow your gut."""|400|Selflessness|FALSE
-66|314|3|You return home and get some time to reflect. Which do you agree with more?|"""Treat others how you want to be treated."""|400|Justice|"""Don't be afraid to speak your mind."""|400|Courage|FALSE
+64|312|3|You return home and get some time to reflect. Which do you agree with more?|Need to go with the flow.'|400|Patience|Can learn from positives and negatives.'|400|Selflessness|FALSE
+65|313|3|You return home and get some time to reflect. Which do you agree with more?|Honesty is key.'|400|Trust|Follow your gut.'|400|Selflessness|FALSE
+66|314|3|You return home and get some time to reflect. Which do you agree with more?|Treat others how you want to be treated.'|400|Justice|Don't be afraid to speak your mind.'|400|Courage|FALSE
 67|400|4|Five years later...|Already?!|401||Continue|401||FALSE
 68|401|4|Travis continues to use the NG tube for feeding. But it keeps coming out, which is very unpleasant.|Continue|402||Continue|402||FALSE
 69|402|4|A decision was made to use a PEG tube.|Continue|403||Continue|403||FALSE
@@ -95,7 +95,7 @@ card enum|cardID|Act/section|Main body test|LeftOption|LeftNextCardID|LeftValue|
 93|514|5|You are worried that this could increase the risk of more exacerbations of infections.|Continue|515||Continue|515||FALSE
 94|515|5|Calvin stares at you with excited eyes and asks you, 'Can I go!?'|Calvin should have some fun|516|Justice|Best not|522|Health|FALSE
 95|516|5|Almost exploding with joy, Calvin leaps into the air with his invitation.|Continue|517||Continue|517||FALSE
-96|517|5|After the party in the weekend, the only difference you notice with Calvin was a small cake stain on his cheek|"""Where's my cake?"""|518|Relationships|Wipe off the cake from his face|519|-|FALSE
+96|517|5|After the party in the weekend, the only difference you notice with Calvin was a small cake stain on his cheek|Where's my cake?'|518|Relationships|Wipe off the cake from his face|519|-|FALSE
 97|518|5|Calvin smiles and points at his tummy.|Continue|519||Continue|519||FALSE
 98|519|5|About 2 days later, Travis starts to have mild coughing fits.|Take Travis to the hospital|521|Courage|Just wait and see|520|Patience|FALSE
 99|520|5|A few hours after that, they are getting much worse and Travis is finding breathing more difficult.|Take Travis to the hospital|521||Take Travis to the hospital|521||FALSE
