@@ -133,7 +133,7 @@ public class GameManager : MonoBehaviour
     {
         //Wallpaper movement
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        wallpaperGameObject.transform.position = new Vector2(mousePosition.x * fWallpaperMoveSpeed + 0.76f, mousePosition.y * fWallpaperMoveSpeed + 0.76f);
+        wallpaperGameObject.transform.position = new Vector2(mousePosition.x * fWallpaperMoveSpeed, mousePosition.y * fWallpaperMoveSpeed + 1.33f);
 
         //Movement
         if (Input.GetMouseButton(0) && mainCardController.isMouseOver && !isSubstituting)
@@ -176,7 +176,7 @@ public class GameManager : MonoBehaviour
                 audioSource.volume = 0.25f;
                 audioSource.pitch = UnityEngine.Random.Range(0.8f, 1.2f);
                 audioSource.Play();
-                Debug.Log(audioSource.pitch);
+                //Debug.Log(audioSource.pitch);
             }
 
         }
@@ -192,7 +192,7 @@ public class GameManager : MonoBehaviour
         {
             isSubstituting = false;
             playedSound = false;
-            Debug.Log("Finished substituting");
+            //Debug.Log("Finished substituting");
         }
         //CARD details update every frame (can make more efficient by only updating when cards load)
         //upText.text = LeftUpQuote;
@@ -402,7 +402,7 @@ public class GameManager : MonoBehaviour
         downText.text = RightDownQuote;
         mainText.text = MainTextQuote;
 
-        Debug.Log("Card: " + currentCard.cardName + "has finished loading.");
+        //Debug.Log("Card: " + currentCard.cardName + "has finished loading.");
 
     }
 
@@ -477,7 +477,7 @@ public class GameManager : MonoBehaviour
                 {
                     valuesList.Add(cardList[currentActiveCardRow, (int)columnHeading.LeftValue]);
 
-                    Debug.Log("valuesList = " + string.Join("", new List<string>(valuesList).ConvertAll(i => i.ToString()).ToArray()));
+                    //Debug.Log("valuesList = " + string.Join("", new List<string>(valuesList).ConvertAll(i => i.ToString()).ToArray()));
                 }
 
                 //Check if the next card needs to be randomized
@@ -508,7 +508,7 @@ public class GameManager : MonoBehaviour
                 {
                     valuesList.Add(cardList[currentActiveCardRow, (int)columnHeading.RightValue]);
 
-                    Debug.Log("valuesList = " + string.Join("", new List<string>(valuesList).ConvertAll(i => i.ToString()).ToArray()));
+                    //Debug.Log("valuesList = " + string.Join("", new List<string>(valuesList).ConvertAll(i => i.ToString()).ToArray()));
                 }
 
                 //Check if the next card needs to be randomized

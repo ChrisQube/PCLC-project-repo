@@ -12,7 +12,7 @@ public class WallpaperMovement : MonoBehaviour
     void Update()
     {
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        wallpaperGameObject.transform.position = new Vector2(mousePosition.x * fWallpaperMoveSpeed + 0.76f, mousePosition.y * fWallpaperMoveSpeed + 0.76f);
+        wallpaperGameObject.transform.position = new Vector2(mousePosition.x * fWallpaperMoveSpeed, mousePosition.y * fWallpaperMoveSpeed + 1.27f);
 
         //Debug.Log("x = " + mousePosition.x + "; y = " + mousePosition.y);
     }
